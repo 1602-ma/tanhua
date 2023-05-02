@@ -18,11 +18,21 @@ logging:
 
 tanhua:
   sms:
-    validateCodeTemplateCode: SMS_18964635416640
+    validateCodeTemplateCode: SMS_189646456735416640
     signName: test
     parameterName: code
-    accessKeyId: LTAI4FyG7DDp4FgrabsdfhmgfidgeAt
-    accessKeySecret: LBXIjhregWlVmR2bphjsp9CVzYzqojUfJ6ezi
+    accessKeyId: LTAI4FyG7DDp4FbxbgbcxrabsdfhmgfidgeAt
+    accessKeySecret: LBXIjhregWlxvVmtsrdtR2bphjsp9CVzYzqojUfJ6ezi
+  oss:
+    endpoint: http://oss-cn-shenzhen.aliyuncs.com
+    bucketName: test
+    url: https://sztanhua.oss-cn-shenzhen.aliyuncs.com
+    accessKeyId: LTAIya4FyG7DdsdsyafDp4FhdafmgfidgeAt
+    accessKeySecret: LBXIjWlVmyerhdR2basdfpp9CasdfvVzYzqojUfJ6ezi
+  face:
+    appId: 22356943456797516
+    apiKey: uD745kEBD87567htO023453soeMB6kuMZ3456TZi
+    secretKey: sMGUX8dftgtzP745hc0rtyeBf546vy3rbGYuX456iK6MZCEF
   # redis key prefix for validate code
   redisValidateCodeKeyPrefix: VALIDATECODE_
   # 密钥

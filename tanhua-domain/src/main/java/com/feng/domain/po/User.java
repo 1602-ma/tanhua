@@ -16,7 +16,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @TableName(value = "tb_user")
-public class User implements Serializable {
+public class User extends BasePojo implements Serializable{
 
     private Long id;
 
@@ -25,8 +25,4 @@ public class User implements Serializable {
 
     /** 密码，json序列化时忽略 */
     private String password;
-
-    private Date created;
-
-    private Date updated;
 }

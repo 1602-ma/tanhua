@@ -11,10 +11,7 @@ import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
  * @author f
  * @date 2023/4/30 11:40
  */
-@SpringBootApplication(exclude = {
-        MongoAutoConfiguration.class,
-        MongoDataAutoConfiguration.class
-})
+@SpringBootApplication
 @MapperScan(value = "com.feng.dubbo.mapper")
 public class DubboServiceApplication {
 

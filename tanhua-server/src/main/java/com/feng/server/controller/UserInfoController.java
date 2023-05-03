@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.print.DocFlavor;
@@ -61,6 +62,18 @@ public class UserInfoController {
     @PutMapping
     public ResponseEntity updateUserInfo(@RequestBody UserInfoVo vo, @RequestHeader("Authorization") String token) {
         userService.updateUserInfo(vo, token);
+        return ResponseEntity.ok(null);
+    }
+
+    /**
+     * 更新用户头像
+     * @param token     token
+     * @param headPhoto photo
+     * @return          res
+     */
+    @PostMapping("/header")
+    public ResponseEntity header(@RequestHeader("Authorization") String token, MultipartFile headPhoto) {
+        userService.header(token, headPhoto);
         return ResponseEntity.ok(null);
     }
 }

@@ -44,4 +44,19 @@ public class OssTemplate {
         ossClient.shutdown();
         return ossProperties.getUrl() + "/" + name;
     }
+
+    /**
+     * 删除头像
+     * @param objectName name
+     */
+    public void deleteFile(String objectName) {
+        String endpoint = ossProperties.getEndpoint();
+        String accessKeyId = ossProperties.getAccessKeyId();
+        String accessKeySecret = ossProperties.getAccessKeySecret();
+        String bucketName = ossProperties.getBucketName();
+
+        OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
+        ossClient.deleteObject(bucketName, objectName.replace(ossProperties.getUrl() + "/", ""));
+        ossClient.shutdown();
+    }
 }

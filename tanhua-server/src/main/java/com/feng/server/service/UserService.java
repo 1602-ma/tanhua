@@ -242,4 +242,36 @@ public class UserService {
         userInfoApi.update(userInfo);
         log.info("=============================== 已更新用户信息");
     }
+
+    /**
+     * 更新用户头像
+     * @param token      token
+     * @param headPhoto  photo
+     */
+    public void header(String token, MultipartFile headPhoto) {
+        try {
+            String userStr = redisTemplate.opsForValue().get("TOKEN_" + token);
+            if (StringUtils.isEmpty(userStr)) {
+                throw new TanHuaException("登录超时，请重新登录");
+            }
+
+            User user = JSON.parseObject(userStr, User.class);
+            Long userId = user.getId();
+
+            UserInfo userInfo = userInfoApi.findById(userId);
+            String oldAvatar = userInfo.getAvatar();
+//            boolean detect = faceTemplate.detect(headPhoto.getBytes());
+            String filename = headPhoto.getOriginalFilename();
+//            String avatar = ossTemplate.upload(filename, headPhoto.getInputStream());
+            String avatar = "1.jpg";
+
+            userInfo.setAvatar(avatar);
+            userInfoApi.update(userInfo);
+            log.info("=============================，已更新用户头像");
+//            ossTemplate.deleteFile(oldAvatar);
+        } catch (Exception e) {
+            log.error("更新用户头像失败");
+            throw new TanHuaException("更新用户头像失败，请稍后再试");
+        }
+    }
 }

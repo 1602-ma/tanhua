@@ -34,4 +34,12 @@ public class UserApiImpl implements UserApi{
 
         return userMapper.selectOne(lambdaQueryWrapper);
     }
+
+    @Override
+    public void updateMobile(Long userId, String phone) {
+        User user = new User();
+        user.setMobile(phone);
+        user.setId(userId);
+        userMapper.updateById(user);
+    }
 }

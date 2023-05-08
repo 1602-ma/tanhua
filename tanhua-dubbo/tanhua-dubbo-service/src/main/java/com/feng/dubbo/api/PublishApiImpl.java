@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import sun.rmi.runtime.Log;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -122,5 +123,39 @@ public class PublishApiImpl implements PublishApi{
         long pages = total / size;
         pages += total % size > 0 ? 1 : 0;
         return new PageResult((long)total, (long)size, (long)pages, (long) page, list);
+    }
+
+    /**
+     *  查询我的动态
+     * @param page      page
+     * @param pageSize  pageSize
+     * @param userId    userId
+     * @return          list
+     */
+    @Override
+    public PageResult<Publish> findMyAlbum(int page, int pageSize, Long userId) {
+        String collectionName = "quanzi_album_" + userId;
+        Query query = new Query().limit(pageSize).skip((page - 1) * pageSize).with(Sort.by(Sort.Order.desc("created")));
+        List<Album> albums = mongoTemplate.find(query, Album.class, collectionName);
+        long total = mongoTemplate.count(query, Album.class, collectionName);
+        List<Publish> list = new ArrayList<>();
+        for (Album album : albums) {
+            Publish publish = mongoTemplate.findById(album.getPublishId(), Publish.class);
+            list.add(publish);
+        }
+        long pages = total / pageSize;
+        pages += total % pageSize > 0 ? 1 : 0;
+        return new PageResult<>((long)total, (long)pageSize, (long)pages, (long)page, list);
+    }
+
+    /**
+     * 通过id查询动态信息
+     * @param publishId publishId
+     * @return          publish
+     */
+    @Override
+    public Publish findById(String publishId) {
+        Publish publish = mongoTemplate.findById(new ObjectId(publishId),Publish.class);
+        return publish;
     }
 }

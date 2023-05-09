@@ -33,6 +33,12 @@ tanhua:
     appId: 22356943456797516
     apiKey: uD745kEBD87567htO023453soeMB6kuMZ3456TZi
     secretKey: sMGUX8dftgtzP745hc0rtyeBf546vy3rbGYuX456iK6MZCEF
+  huanxin:
+    url: http://a1.easemob.com/
+    orgName: 11121909068961181842
+    appName: test
+    clientId: YXA6fVCzrQjySx-6Ffsq2PA
+    clientSecret: jHByJ5uc4HQQ
   # redis key prefix for validate code
   redisValidateCodeKeyPrefix: VALIDATECODE_
   # 密钥

@@ -1,14 +1,18 @@
 package com.feng.commons;
 
 import com.feng.commons.properties.FaceProperties;
+import com.feng.commons.properties.HuanXinProperties;
 import com.feng.commons.properties.OssProperties;
 import com.feng.commons.properties.SmsProperties;
 import com.feng.commons.templates.FaceTemplate;
+import com.feng.commons.templates.HuanXinTemplate;
 import com.feng.commons.templates.OssTemplate;
 import com.feng.commons.templates.SmsTemplate;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * @author f
@@ -17,7 +21,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableConfigurationProperties({SmsProperties.class
         , OssProperties.class
-        , FaceProperties.class})
+        , FaceProperties.class
+        , HuanXinProperties.class})
 public class CommonsAutoConfiguration {
 
     /**
@@ -51,5 +56,15 @@ public class CommonsAutoConfiguration {
     @Bean
     public FaceTemplate faceTemplate(FaceProperties faceProperties) {
         return new FaceTemplate(faceProperties);
+    }
+
+    @Bean
+    public HuanXinTemplate huanXinTemplate(HuanXinProperties huanXinProperties){
+        return new HuanXinTemplate(huanXinProperties);
+    }
+
+    @Bean
+    public RestTemplate restTemplate(RestTemplateBuilder builder){
+        return builder.build();
     }
 }

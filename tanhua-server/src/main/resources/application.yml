@@ -42,4 +42,18 @@ spring:
   redis:
     host: 192.168.211.160
     port: 6379
+  servlet:
+    multipart:
+      max-file-size: 300MB
+      max-request-size: 300MB
+
+# 分布式文件系统配置
+fdfs:
+  so-timeout: 1500
+  connect-timeout: 600
+  thumb-image:
+    width: 150
+    height: 150
+  tracker-list: 192.168.211.160:22122
+  web-server-url: http://192.168.211.160:8888/
 

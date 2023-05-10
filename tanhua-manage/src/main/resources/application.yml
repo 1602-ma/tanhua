@@ -1,0 +1,52 @@
+server:
+  port: 18083
+
+#配置redis
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/tanhua?useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true&useSSL=false
+    username: root
+    password: root
+  redis:
+    host: 192.168.211.160
+    port: 6379
+dubbo:
+  application:
+    name: tanhua-manage
+  registry:
+    address: zookeeper://192.168.211.160:2181
+  consumer:
+    check: false
+#配置短信平台信息
+tanhua:
+  secret: 76bd425bfdas43r436f29fdfad7fcc2e0bfc286043df1
+  #替换成自己的 oss存储信息
+  sms:
+    validateCodeTemplateCode: SMS_204661533
+    signName: test
+    parameterName: code
+    accessKeyId: LTAI4FynsGS7V243251bPJqQqrzhH
+    accessKeySecret: c9fMcE7W8n32456jMFNL753JNJQT2vn5A0J1ey
+  oss:
+    endpoint: http://oss-cn-shenzhen.aliyuncs.com
+    bucketName: test
+    url: https://test.oss-cn-shenzhen.aliyuncs.com
+    accessKeyId: LTVI4FdavynsGS7V2bPJqQqrzhH
+    accessKeySecret: c9fDE7W8njbdfagasdfgMFNLJNJQT2vn5A0J1ey
+  face:
+    appId: 2283413257663
+    apiKey: nA43g46325alrxfUZTGtYRVK8F8tb
+    secretKey: MQp567q4trebafnGnIKfniURa2XAw8bT1SlPE3
+  huanxin:
+    url: http://a1.easemob.com/
+    orgName: 1112154326290901181842
+    appName: test
+    clientId: YXA6VggstdfadfiTmSSi_dWvqeoCg
+    clientSecret: YXAvRfdasfviM513TuJLAeFTfdsatef9Th4wo
+#mybaits-plus
+mybatis-plus:
+  global-config:
+    db-config:
+      table-prefix: tb_    #数据库表前缀
+      id-type: auto        #数据库表主键的策略

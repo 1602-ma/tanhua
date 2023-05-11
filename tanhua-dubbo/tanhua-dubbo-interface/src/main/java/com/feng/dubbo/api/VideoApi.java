@@ -35,4 +35,13 @@ public interface VideoApi {
      * @param followUser
      */
     void unfollowUser(FollowUser followUser);
+
+    /**
+     * 获取当前用户所有的视频列表
+     * @param page      page
+     * @param pageSize  pageSize
+     * @param uid       uid
+     * @return          page
+     */
+    PageResult findAll(int page, int pageSize, Long uid);
 }

@@ -1,6 +1,9 @@
 package com.feng.dubbo.api;
 
 import com.feng.domain.po.UserInfo;
+import com.feng.domain.vo.PageResult;
+
+import java.util.Map;
 
 /**
  * @author f
@@ -26,4 +29,11 @@ public interface UserInfoApi {
      * @return       userInfo
      */
     UserInfo findById(Long userId);
+
+    /**
+     * 用户管理 page
+     * @param map map
+     * @return    page
+     */
+    PageResult<UserInfo> findPage(Map<String, Object> map);
 }

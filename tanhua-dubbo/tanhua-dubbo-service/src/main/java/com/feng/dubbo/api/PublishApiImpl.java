@@ -158,4 +158,26 @@ public class PublishApiImpl implements PublishApi{
         Publish publish = mongoTemplate.findById(new ObjectId(publishId),Publish.class);
         return publish;
     }
+
+    /**
+     * 获取当前用户的所有动态
+     * @param page          page
+     * @param pageSize      pageSize
+     * @param uid           userId
+     * @param publishState  publishState
+     * @return
+     */
+    @Override
+    public PageResult findAll(int page, int pageSize, Long uid, Integer publishState) {
+        Query query = new Query();
+        if (null != uid) {
+            query.addCriteria(Criteria.where("userId").is(uid));
+        }
+
+        List<Publish> list = mongoTemplate.find(query, Publish.class);
+        long total = mongoTemplate.count(query, Publish.class);
+        int pages = total / pageSize + total % pageSize > 0 ? 1 : 0;
+        PageResult pageResult = new PageResult(total, (long)pageSize, (long)page, (long)pages, list);
+        return pageResult;
+    }
 }

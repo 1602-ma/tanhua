@@ -49,4 +49,14 @@ public interface PublishApi {
      * @return          publish
      */
     Publish findById(String publishId);
+
+    /**
+     * 获取当前用户的所有动态分页列表
+     * @param page          page
+     * @param pageSize      pageSize
+     * @param uid           userId
+     * @param publishState  publishState
+     * @return              page
+     */
+    PageResult findAll(int page, int pageSize, Long uid, Integer publishState);
 }

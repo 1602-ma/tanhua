@@ -13,6 +13,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
 import javax.annotation.Resource;
+import javax.crypto.Cipher;
 import java.util.List;
 
 /**
@@ -84,5 +85,28 @@ public class VideoApiImpl implements VideoApi{
         query.addCriteria(Criteria.where("userId").is(followUser.getUserId())
                 .and("followUserId").is(followUser.getFollowUserId()));
         mongoTemplate.remove(query,FollowUser.class);
+    }
+
+    /**
+     * 获取当前用户的所有视频列表
+     * @param page      page
+     * @param pageSize  pageSize
+     * @param uid       uid
+     * @return          page
+     */
+    @Override
+    public PageResult findAll(int page, int pageSize, Long uid) {
+        Criteria criteria = new Criteria();
+        if (null != uid) {
+            criteria = criteria.where("userId").is(uid);
+        }
+        Query query = new Query(criteria).limit(pageSize)
+                .skip((page - 1) * pageSize)
+                .with(Sort.by(Sort.Order.desc("created")));
+        List<Video> list = mongoTemplate.find(query, Video.class);
+        long total = mongoTemplate.count(query, Video.class);
+        int pages = total / pageSize + total % pageSize > 0 ? 1 : 0;
+        PageResult pageResult = new PageResult(total, (long)pageSize, (long)page, (long)pages, list);
+        return pageResult;
     }
 }

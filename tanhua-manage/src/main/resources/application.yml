@@ -44,9 +44,23 @@ tanhua:
     appName: test
     clientId: YXA6VggstdfadfiTmSSi_dWvqeoCg
     clientSecret: YXAvRfdasfviM513TuJLAeFTfdsatef9Th4wo
+  huawei:
+    username: test
+    password: test
+    project:  test
+    domain:  test
+    # 图片检测内容 politics：是否涉及政治人物的检测，terrorism：是否包含涉政暴恐元素的检测，porn：是否包含涉黄内容元素的检测，ad：是否包含广告的检测（公测特性），all：包含politics、terrorism和porn三种场景的检测
+    categoriesImage: politics,terrorism,porn
+    # 文字检测内容 politics：涉政，porn：涉黄，ad：广告，abuse：辱骂，contraband：违禁品，flood：灌水
+    categoriesText: politics,porn,ad,abuse,contraband,flood
+    textApiUrl: https://moderation.cn-east-3.myhuaweicloud.com/v1.0/moderation/text
+    imageApiUrl: https://moderation.cn-east-3.myhuaweicloud.com/v1.0/moderation/image/batch
 #mybaits-plus
 mybatis-plus:
   global-config:
     db-config:
       table-prefix: tb_    #数据库表前缀
       id-type: auto        #数据库表主键的策略
+
+rocketmq:
+  name-server: 192.168.211.160:9876

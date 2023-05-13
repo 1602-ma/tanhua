@@ -102,6 +102,11 @@
                 <version>4.3.2</version>
             </dependency>
             <dependency>
+                <groupId>com.apifan.common</groupId>
+                <artifactId>common-random</artifactId>
+                <version>1.0.5</version>
+            </dependency>
+            <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>3.7</version>

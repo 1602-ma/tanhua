@@ -1,13 +1,7 @@
 package com.feng.commons;
 
-import com.feng.commons.properties.FaceProperties;
-import com.feng.commons.properties.HuanXinProperties;
-import com.feng.commons.properties.OssProperties;
-import com.feng.commons.properties.SmsProperties;
-import com.feng.commons.templates.FaceTemplate;
-import com.feng.commons.templates.HuanXinTemplate;
-import com.feng.commons.templates.OssTemplate;
-import com.feng.commons.templates.SmsTemplate;
+import com.feng.commons.properties.*;
+import com.feng.commons.templates.*;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
@@ -22,7 +16,8 @@ import org.springframework.web.client.RestTemplate;
 @EnableConfigurationProperties({SmsProperties.class
         , OssProperties.class
         , FaceProperties.class
-        , HuanXinProperties.class})
+        , HuanXinProperties.class
+        , HuaWeiUGCProperties.class})
 public class CommonsAutoConfiguration {
 
     /**
@@ -67,4 +62,10 @@ public class CommonsAutoConfiguration {
     public RestTemplate restTemplate(RestTemplateBuilder builder){
         return builder.build();
     }
+
+    @Bean
+    public HuaWeiUGCTemplate huaWeiUGCTemplate(HuaWeiUGCProperties properties) {
+        return new HuaWeiUGCTemplate(properties);
+    }
+
 }
